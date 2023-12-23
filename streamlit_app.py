@@ -8,7 +8,38 @@ num_cols = 3  # Adjust the number of columns based on device responsiveness
 
 # Dictionary to hold the form inputs
 input_data = {}
-
+fields = [
+    "Investor",
+    "SubmittedToInvestorDate",
+    "propertyCounty",
+    "APR",
+    "CashoutToBorrower",
+    "FundingDate",
+    "DTI",
+    "ModifiedTimestamp",
+    "FICO",
+    "QualifyingHousingRatio",
+    "PropertyZip",
+    "PrimaryBorrowerCity",
+    "TotalPrice",
+    "PropertyCity",
+    "TotalLoanAmount",
+    "PrimaryBorrowerZip",
+    "AppraisalValue",
+    "CostCenter",
+    "TotalPayment",
+    "CLTV",
+    "Branch",
+    "InterestRate",
+    "LockExpirationDate",
+    "CreateDate",
+    "LTV",
+    "PlannedClosingDate",
+    "Points",
+    "Region",
+    "LockDate",
+    "LoanProgram"
+]
 # Function to validate input based on field name
 def validate_input(field_name, value):
     if 'Zip' in field_name and not value.isnumeric():
