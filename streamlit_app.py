@@ -78,7 +78,7 @@ for index, field in enumerate(fields):
             input_data[field] = st.selectbox(field, region_options)
         elif field == 'LoanProgram':
             input_data[field] = st.selectbox(field, loan_program_options)
-        elif "Date" in field:
+        elif "Date" or "ModifiedTimestamp" in field:
             # Use date input for fields containing 'Date'
             input_data[field] = st.date_input(field, datetime.today())
         else:
