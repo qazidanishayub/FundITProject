@@ -1,5 +1,10 @@
 import streamlit as st
 from datetime import datetime
+import joblib
+from preprocess import preprocess_input
+
+# Load the saved model
+model = joblib.load('fundit_model_purchase.pkl')
 
 st.title('Mortgage Application Form for PurchaseByInvesterDT Prediction')
 
@@ -90,10 +95,21 @@ for index, field in enumerate(fields):
             for err in field_errors:
                 st.error(err)
 
-# Button to submit the form
-if st.button('Submit'):
-    # Here you can handle the form submission, like saving the data to a database
-    # For demonstration, the input data is printed on the screen
-    st.json(input_data)
+# Function to make predictions using the loaded model
+def make_predictions(model, input_data):
+    predictions = model.predict(input_data)
+    return predictions
 
-# To run this app, save the above code to a file and run it with: streamlit run your_script.py
+if st.button('Submit'):
+    # Preprocess the input data
+    input_data = preprocess_input(input_data)
+
+    # Make predictions
+    predicted_days = make_predictions(model, input_data)
+
+    # Calculate the predicted date by adding the predicted days to FundingDate
+    funding_date = input_data['FundingDate']
+    predicted_date = funding_date + timedelta(days=predicted_days)
+
+    # Display the predicted result as a date
+    st.write(f"Predicted PurchaseByInvestorDT by Investor: {predicted_date}")
