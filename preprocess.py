@@ -51,7 +51,7 @@ def preprocess_input(input_data):
 
     # Load the preprocessor pipeline
     # Replace 'preprocessor.pkl' with the actual filename you saved your preprocessor as
-    preprocessor = joblib.load('preprocessor.pkl')
+    preprocessor = joblib.load('preprocessor_pipeline_purchase.pkl')
 
     # Apply the preprocessor pipeline to the input data
     numerical_transformed = preprocessor.named_transformers_['num'].transform(numerical_data)
@@ -62,14 +62,3 @@ def preprocess_input(input_data):
     processed_input = np.concatenate([numerical_transformed, categorical_transformed, datetime_transformed], axis=1)
 
     return processed_input
-
-# Example usage:
-# input_data = {
-#     'Investor': 'John Doe',
-#     'APR': 4.5,
-#     'FundingDate': '2023-12-16',
-#     # ... other fields ...
-# }
-
-# preprocessed_input = preprocess_input(input_data)
-# print(preprocessed_input)
